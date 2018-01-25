@@ -8,9 +8,9 @@ image_resource:
     tag: latest
 
 inputs: 
-- name: build-orders
+- name: resource-orders
 
 run:
-  dir: build-orders
+  dir: resource-orders
   path: dotnet
   args: [build]

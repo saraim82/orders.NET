@@ -10,7 +10,7 @@ jobs:
 - name: build-orders
   public: true
   plan: 
-  - get:  resource-orders
+  - get: resource-orders
     trigger: true
   - task: run build
-    file: build-orders/ci/tasks/run_build.yml
+    file: resource-orders/ci/tasks/run_build.yml
