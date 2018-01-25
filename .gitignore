@@ -1,0 +1,7 @@
+# Credentials
+
+ci/credentials.yml
+
+# Directories potentially created by dotnet build
+obj
+bin

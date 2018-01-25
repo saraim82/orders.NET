@@ -1,0 +1,22 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: microsoft/dotnet
+    tag: latest
+
+inputs:
+- name: resource-orders
+
+outputs:
+- name: docker-publish
+
+run:
+ path: sh
+ args:
+ - -exc
+ - |
+    export DOCKER_BUILD_DIR=$PWD/docker-publish
+    (cd resource-orders && dotnet publish -o ./publish  && cp -r publish Dockerfile $DOCKER_BUILD_DIR)

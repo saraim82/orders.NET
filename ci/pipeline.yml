@@ -6,6 +6,13 @@ resources:
    uri: https://github.com/saraim82/orders.NET.git
    branch: master
 
+- name: orders-docker-image
+  type: docker-image
+  source:
+    repository: gcr.io/ulti-stratosphere/carts-srv
+    username: oauth2accesstoken
+    password: {{ACCESS_TOKEN}}
+
 jobs:
 - name: build-orders
   public: true
@@ -14,3 +21,15 @@ jobs:
     trigger: true
   - task: run build
     file: resource-orders/ci/tasks/run_build.yml
+
+- name: publish-orders
+  public: true
+  plan:
+  - get: resource-orders
+    passed: [build-orders]
+    trigger: true
+  - task: run publish
+    file: resource-orders/ci/tasks/run_publish.yml
+  - put: orders-docker-image
+    params:
+      build: docker-publish
