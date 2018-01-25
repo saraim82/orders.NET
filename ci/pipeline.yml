@@ -1,0 +1,16 @@
+---
+resources:
+- name: resource-orders
+  type: git
+  source: 
+   uri: https://github.com/saraim82/orders.NET.git
+   branch: master
+
+jobs:
+- name: build-orders
+  public: true
+  plan: 
+  - get:  resource-orders
+    trigger: true
+  - task: run build
+    file: build-orders/ci/tasks/run_build.yml

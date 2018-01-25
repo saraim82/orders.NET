@@ -1,0 +1,16 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: microsoft/dotnet
+    tag: latest
+
+inputs: 
+- name: build-orders
+
+run:
+  dir: build-orders
+  path: dotnet
+  args: [build]
