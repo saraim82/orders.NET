@@ -9,7 +9,7 @@ resources:
 - name: orders-docker-image
   type: docker-image
   source:
-    repository: gcr.io/ulti-stratosphere/carts-srv
+    repository: gcr.io/ulti-stratosphere/orders-dotnet-srv
     username: oauth2accesstoken
     password: {{ACCESS_TOKEN}}
 
