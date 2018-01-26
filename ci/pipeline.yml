@@ -22,11 +22,20 @@ jobs:
   - task: run build
     file: resource-orders/ci/tasks/run_build.yml
 
+- name: test-orders
+  public: true
+  plan: 
+  - get: resource-orders
+    passed: [build-orders]
+    trigger: true
+  - task: run build
+    file: resource-orders/ci/tasks/run_test.yml
+
 - name: publish-orders
   public: true
   plan:
   - get: resource-orders
-    passed: [build-orders]
+    passed: [test-orders]
     trigger: true
   - task: run publish
     file: resource-orders/ci/tasks/run_publish.yml
